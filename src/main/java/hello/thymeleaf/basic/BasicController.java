@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.Data;
+import lombok.experimental.PackagePrivate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,6 +80,13 @@ public class BasicController {
     public String literal(Model model) {
         model.addAttribute("data", "Spring!");
         return "basic/literal";
+    }
+
+    @GetMapping("/operation")
+    public String opreation(Model model) {
+        model.addAttribute("nullData", null);
+        model.addAttribute("data", "Spring!");
+        return "basic/operation";
     }
 
     @Component("helloBean")
