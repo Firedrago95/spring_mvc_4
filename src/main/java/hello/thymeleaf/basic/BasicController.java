@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -83,7 +84,7 @@ public class BasicController {
     }
 
     @GetMapping("/operation")
-    public String opreation(Model model) {
+    public String operation(Model model) {
         model.addAttribute("nullData", null);
         model.addAttribute("data", "Spring!");
         return "basic/operation";
@@ -92,6 +93,21 @@ public class BasicController {
     @GetMapping("/attribute")
     public String attribute() {
         return "basic/attribute";
+    }
+
+    @GetMapping("/each")
+    public String each(Model model) {
+        addUser(model);
+        return "basic/each";
+    }
+
+    private void addUser(Model model) {
+        List<User> list = new ArrayList<>();
+        list.add(new User("userA", 10));
+        list.add(new User("userB", 20));
+        list.add(new User("userC", 30));
+
+        model.addAttribute("users", list);
     }
 
     @Component("helloBean")
